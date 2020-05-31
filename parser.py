@@ -78,13 +78,21 @@ def read_cap_file():
 
     return caps
 
+
 def parse_line(line):
     """
     This parse a simple string, separate and return two key and value
     :param line:
     :return:
     """
-    pass
+
+    # for i in line.split(' '):
+    #     if re.findall(param, i):
+    #         cap_key = i.split('-', 1)[-1]
+    cap_key = line.split(' ', 1)[0]
+    cap_value = line.rsplit(None, 1)[-1]
+    return cap_key, cap_value
+
 
 def parse_capabilities():
     """
@@ -96,7 +104,7 @@ def parse_capabilities():
 
     param_list = read_param_list()
     caps = read_cap_file()
-    param_dict = []
+    param_dict = {}
     start = end = 0
     line_count = 0
     for param, value in param_list.items():
@@ -105,13 +113,13 @@ def parse_capabilities():
             if isinstance(value, int):
                 if re.search(param, line):
                     start = line_count + 1
-                    end = line_count + value
+                    end = line_count + value + 1
                 if start < line_count < end:
-                    param_dict.append(line)
+                    # print(param, line)
+                    cap_key, cap_value = parse_line(line)
+                    print(cap_key, cap_value)
 
     # for i in param_dict:
     #     print(i)
 
-# parse_capabilities()
-line = "supportedBandwidthCombinationSet-r10 :  ---- '111'B ---- *****00010111***"
-parse_line(line)
+parse_capabilities()

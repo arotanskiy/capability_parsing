@@ -2,5 +2,5 @@
   "SupportedBandEUTRA": 2,
   "BandParameters": "list",
   "BandInfoEUTRA": "dict",
-  "rf-Parameters": 4
+  "rf-Parameters": "list"
 }
